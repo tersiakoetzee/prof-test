@@ -1,11 +1,10 @@
 <?php
 
-// Function to import data from a CSV file into an SQLite database
 function importCSV($filePath) {
-    // Create a database connection
+
     $db = new SQLite3('sqlite/database.db');
 
-    // Create a table if it does not exist
+    // Creating a table if it does not exist
     $db->exec("CREATE TABLE IF NOT EXISTS csv_import (
         Id INTEGER PRIMARY KEY, 
         Name TEXT, 
@@ -14,13 +13,12 @@ function importCSV($filePath) {
         Age INTEGER, 
         DateOfBirth TEXT)");
 
-    // Open the CSV file for reading
     if (($handle = fopen($filePath, 'r')) !== FALSE) {
-        fgetcsv($handle); // Skip the header row
+        fgetcsv($handle); 
         
         // Loop through the rows in the CSV file
         while (($row = fgetcsv($handle)) !== FALSE) {
-            // Prepare an SQL insert statement
+            // SQL insert statement
             $stmt = $db->prepare("INSERT INTO csv_import (Id, Name, Surname, Initials, Age, DateOfBirth) VALUES (?, ?, ?, ?, ?, ?)");
             // Bind the CSV data to the SQL statement
             $stmt->bindValue(1, $row[0], SQLITE3_INTEGER);
@@ -32,7 +30,7 @@ function importCSV($filePath) {
             $stmt->execute(); // Execute the SQL query
         }
 
-        fclose($handle); // Close the file
+        fclose($handle); 
         echo "CSV file imported successfully.\n"; // Output success message
 
         // Count the number of records imported

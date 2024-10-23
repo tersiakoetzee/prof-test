@@ -6,13 +6,13 @@ function generateCSV($num_records) {
     $names = ["Sean", "Sasha", "John", "Michael", "David", "Emma", "Sophia", "Olivia", "Ethan", "James", "Benjamin", "Aiden", "Lucas", "Mason", "Jackson", "Henry", "Jacob", "William", "Daniel", "Elijah"];
     $surnames = ["Pompeii", "Hall", "Smith", "Johnson", "Williams", "Jones", "Brown", "Davis", "Miller", "Wilson", "Moore", "Taylor", "Anderson", "Thomas", "Jackson", "White", "Harris", "Martin", "Thompson", "Garcia"];
 
-    // Open a file to write data (creates a new file or overwrites if exists)
+
     $file = fopen('output/output.csv', 'w');
     
-    // Add the header row to the CSV
+    //  the header row to the CSV
     fputcsv($file, ['Id', 'Name', 'Surname', 'Initials', 'Age', 'DateOfBirth']);
     
-    $generatedData = []; // To track generated records and avoid duplicates
+    $generatedData = []; //  track generated records and avoid duplicates
 
     // Loop through and generate the specified number of records
     for ($i = 1; $i <= $num_records; $i++) {
@@ -34,7 +34,6 @@ function generateCSV($num_records) {
         fputcsv($file, [$i, $name, $surname, $initials, $age, $dob]);
     }
 
-    // Close the file after writing
     fclose($file);
     
     echo "CSV file generated with $num_records records.\n"; // Output success message
