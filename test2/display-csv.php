@@ -25,4 +25,4 @@ if (($handle = fopen($csvFile, 'r')) !== FALSE) {
 
 // Back button to return to index.php
 echo '<br><a href="index.php">Go Back</a>';
-?>
+
